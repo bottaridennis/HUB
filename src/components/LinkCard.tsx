@@ -23,8 +23,6 @@ export function LinkCard({ title, url, icon, index }: LinkCardProps) {
     >
       <a 
         href={url} 
-        target="_blank" 
-        rel="noopener noreferrer"
         className="block w-full h-full group"
       >
         <div className="w-full h-full flex flex-col items-center justify-center p-4 border-2 border-primary/30 bg-card hover:border-primary hover:shadow-[0_0_20px_rgba(var(--primary),0.4)] transition-all duration-300 rounded-xl relative overflow-hidden">
