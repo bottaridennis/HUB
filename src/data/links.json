@@ -1,0 +1,38 @@
+[
+  {
+    "id": "1",
+    "title": "Party Organizer",
+    "url": "https://dennisbottari.it/partyOrganizer",
+    "icon": "PartyPopper"
+  },
+  {
+    "id": "2",
+    "title": "NerdShelf",
+    "url": "https://dennisbottari.it/NerdShelf",
+    "icon": "Library"
+  },
+  {
+    "id": "4",
+    "title": "Assisi",
+    "url": "https://dennisbottari.it/assisi",
+    "icon": "Church"
+  },
+  {
+    "id": "5",
+    "title": "Portfolio",
+    "url": "https://dennisbottari.it",
+    "icon": "User"
+  },
+  {
+    "id": "6",
+    "title": "Content Hero",
+    "url": "https://dennisbottari.it/content_hero",
+    "icon": "Shield"
+  },
+  {
+    "id": "7",
+    "title": "Grest Oppeano",
+    "url": "https://dennisbottari.it/grest_oppeano",
+    "icon": "Sun"
+  }
+]

@@ -1,0 +1,6 @@
+{
+  "name": "Minimal Link Hub",
+  "description": "A clean, responsive hub for your favorite links, managed via a simple JSON file.",
+  "requestFramePermissions": [],
+  "majorCapabilities": []
+}
