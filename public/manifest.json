@@ -1,0 +1,17 @@
+{
+  "name": "HUB",
+  "short_name": "HUB",
+  "start_url": "/HUB/",
+  "display": "standalone",
+  "scope": "/",
+  "background_color": "#0a0a0a",
+  "theme_color": "#0a0a0a",
+  "icons": [
+    {
+      "src": "hub-icon.svg",
+      "sizes": "180x180",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
