@@ -1,38 +1,86 @@
 [
   {
     "id": "1",
-    "title": "Party Organizer",
-    "url": "https://dennisbottari.it/partyOrganizer",
-    "icon": "PartyPopper"
-  },
-  {
-    "id": "2",
     "title": "NerdShelf",
     "url": "https://dennisbottari.it/NerdShelf",
     "icon": "Library"
   },
   {
-    "id": "4",
-    "title": "Assisi",
-    "url": "https://dennisbottari.it/assisi",
-    "icon": "Church"
-  },
-  {
-    "id": "5",
+    "id": "2",
     "title": "Portfolio",
     "url": "https://dennisbottari.it",
     "icon": "User"
   },
   {
+    "id": "3",
+    "title": "Grest Oppeano",
+    "url": "https://dennisbottari.it/grest_oppeano",
+    "icon": "Sun"
+  },
+  {
+    "id": "4",
+    "title": "Party Organizer",
+    "url": "https://dennisbottari.it/PartyOrganizer",
+    "icon": "PartyPopper"
+  },
+  {
+    "id": "5",
+    "title": "PrimaClean",
+    "url": "https://dennisbottari.it/primaclean",
+    "icon": "Sparkles"
+  },
+  {
     "id": "6",
+    "title": "Assisi",
+    "url": "https://dennisbottari.it/assisi",
+    "icon": "Church"
+  },
+  {
+    "id": "7",
+    "title": "D&D",
+    "url": "https://dennisbottari.it/dnd",
+    "icon": "Dices"
+  },
+  {
+    "id": "8",
+    "title": "Wishlists",
+    "url": "https://dennisbottari.it/wishlists",
+    "icon": "Gift"
+  },
+  {
+    "id": "9",
+    "title": "Oppeado",
+    "url": "https://dennisbottari.it/Oppeado",
+    "icon": "Map"
+  },
+  {
+    "id": "10",
+    "title": "LinkShelf",
+    "url": "https://dennisbottari.it/Linkshelf",
+    "icon": "Bookmark"
+  },
+  {
+    "id": "11",
+    "title": "Defuser",
+    "url": "https://dennisbottari.it/defuser",
+    "icon": "Bomb"
+  },
+  {
+    "id": "12",
+    "title": "Revolution Minds",
+    "url": "https://dennisbottari.it/revolutionminds",
+    "icon": "Brain"
+  },
+  {
+    "id": "13",
     "title": "Content Hero",
     "url": "https://dennisbottari.it/content_hero",
     "icon": "Shield"
   },
   {
-    "id": "7",
-    "title": "Grest Oppeano",
-    "url": "https://dennisbottari.it/grest_oppeano",
-    "icon": "Sun"
+    "id": "14",
+    "title": "Old Portfolio",
+    "url": "https://dennisbottari.it/old_portfolio",
+    "icon": "Archive"
   }
 ]
