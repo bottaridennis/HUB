@@ -1,86 +1,116 @@
 [
   {
     "id": "1",
-    "title": "NerdShelf",
-    "url": "https://dennisbottari.it/NerdShelf",
-    "icon": "Library"
+    "title": "Alice",
+    "url": "https://dennisbottari.it/alice/",
+    "icon": "Rabbit"
   },
   {
     "id": "2",
-    "title": "Portfolio",
-    "url": "https://dennisbottari.it",
-    "icon": "User"
-  },
-  {
-    "id": "3",
-    "title": "Grest Oppeano",
-    "url": "https://dennisbottari.it/grest_oppeano",
-    "icon": "Sun"
-  },
-  {
-    "id": "4",
-    "title": "Party Organizer",
-    "url": "https://dennisbottari.it/partyOrganizer",
-    "icon": "PartyPopper"
-  },
-  {
-    "id": "5",
-    "title": "PrimaClean",
-    "url": "https://dennisbottari.it/primaclean",
-    "icon": "Sparkles"
-  },
-  {
-    "id": "6",
     "title": "Assisi",
-    "url": "https://dennisbottari.it/assisi",
+    "url": "https://dennisbottari.it/assisi/",
     "icon": "Church"
   },
   {
-    "id": "7",
-    "title": "D&D",
-    "url": "https://dennisbottari.it/dnd",
-    "icon": "Dices"
+    "id": "3",
+    "title": "Portfolio",
+    "url": "https://dennisbottari.it/",
+    "icon": "User"
   },
   {
-    "id": "8",
-    "title": "Wishlists",
-    "url": "https://dennisbottari.it/wishlists",
-    "icon": "Gift"
-  },
-  {
-    "id": "9",
-    "title": "Oppeado",
-    "url": "https://dennisbottari.it/Oppeado",
-    "icon": "Map"
-  },
-  {
-    "id": "10",
-    "title": "LinkShelf",
-    "url": "https://dennisbottari.it/linkshelf",
-    "icon": "Bookmark"
-  },
-  {
-    "id": "11",
-    "title": "Defuser",
-    "url": "https://dennisbottari.it/defuser",
-    "icon": "Bomb"
-  },
-  {
-    "id": "12",
-    "title": "Revolution Minds",
-    "url": "https://dennisbottari.it/revolutionminds",
-    "icon": "Brain"
-  },
-  {
-    "id": "13",
+    "id": "4",
     "title": "Content Hero",
-    "url": "https://dennisbottari.it/content_hero",
+    "url": "https://dennisbottari.it/content_hero/",
     "icon": "Shield"
   },
   {
-    "id": "14",
+    "id": "5",
+    "title": "Defuser",
+    "url": "https://dennisbottari.it/defuser/",
+    "icon": "Bomb"
+  },
+  {
+    "id": "6",
+    "title": "D&D",
+    "url": "https://dennisbottari.it/dnd/",
+    "icon": "Dices"
+  },
+  {
+    "id": "7",
+    "title": "Grest Oppeano",
+    "url": "https://dennisbottari.it/grest_oppeano/",
+    "icon": "Sun"
+  },
+  {
+    "id": "8",
+    "title": "HUB",
+    "url": "https://dennisbottari.it/HUB/",
+    "icon": "LayoutGrid"
+  },
+  {
+    "id": "9",
+    "title": "LinkShelf",
+    "url": "https://dennisbottari.it/linkshelf/",
+    "icon": "Bookmark"
+  },
+  {
+    "id": "10",
+    "title": "NerdShelf",
+    "url": "https://dennisbottari.it/NerdShelf/",
+    "icon": "Library"
+  },
+  {
+    "id": "11",
     "title": "Old Portfolio",
-    "url": "https://dennisbottari.it/old_portfolio",
+    "url": "https://dennisbottari.it/old_portfolio/",
     "icon": "Archive"
+  },
+  {
+    "id": "12",
+    "title": "Olioso",
+    "url": "https://dennisbottari.it/Olioso_di_montresora/",
+    "icon": "Droplets"
+  },
+  {
+    "id": "13",
+    "title": "Oppeado",
+    "url": "https://dennisbottari.it/Oppeado/",
+    "icon": "Map"
+  },
+  {
+    "id": "14",
+    "title": "Party Organizer",
+    "url": "https://dennisbottari.it/partyOrganizer/",
+    "icon": "PartyPopper"
+  },
+  {
+    "id": "15",
+    "title": "PrimaClean",
+    "url": "https://dennisbottari.it/primaclean/",
+    "icon": "Sparkles"
+  },
+  {
+    "id": "16",
+    "title": "Revolution Minds",
+    "url": "https://dennisbottari.it/revolutionminds/",
+    "icon": "Brain"
+  },
+  {
+    "id": "17",
+    "title": "SCP",
+    "url": "https://dennisbottari.it/scp/",
+    "icon": "ShieldAlert"
+  },
+  {
+    "id": "18",
+    "title": "Sonic Visual",
+    "url": "https://dennisbottari.it/SonicVisual_Studio/",
+    "icon": "AudioWaveform"
+  },
+  {
+    "id": "19",
+    "title": "Wishlists",
+    "url": "https://dennisbottari.it/wishlists/",
+    "icon": "Gift"
   }
 ]
