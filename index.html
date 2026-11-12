@@ -1,28 +1,207 @@
 <!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>HUB</title>
-    
-    <!-- iOS Web App Meta Tags -->
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="HUB">
-    
-    <!-- Apple Touch Icon (Neon Hub Style) -->
-    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'><rect width='180' height='180' rx='40' fill='%230a0a0a'/><rect x='45' y='45' width='40' height='40' rx='8' fill='none' stroke='%2300f2ff' stroke-width='6'/><rect x='95' y='45' width='40' height='40' rx='8' fill='none' stroke='%2300f2ff' stroke-width='6'/><rect x='45' y='95' width='40' height='40' rx='8' fill='none' stroke='%2300f2ff' stroke-width='6'/><rect x='95' y='95' width='40' height='40' rx='8' fill='none' stroke='%2300f2ff' stroke-width='6'/></svg>">
-    
-    <!-- Theme Color for mobile browsers -->
-    <meta name="theme-color" content="#0a0a0a">
-    
-    <!-- PWA Manifest -->
-    <link rel="manifest" href="manifest.json">
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
-</html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Progetti · Dennis Bottari</title>
+<style>
+  :root {
+    --bg: #f6f6f4; --card: #ffffff; --text: #1b1b1b; --muted: #6b6b6b;
+    --border: #e3e3df; --accent: #2457d6; --ok: #1a8f4c; --ok-bg: #e3f5ea;
+    --off: #8a8a8a; --off-bg: #efefec; --warn: #a86a00; --warn-bg: #fdf1dc;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #121212; --card: #1c1c1c; --text: #ececec; --muted: #9a9a9a;
+      --border: #2c2c2c; --accent: #7aa2ff; --ok: #5fd08f; --ok-bg: #173323;
+      --off: #8a8a8a; --off-bg: #262626; --warn: #f0b44c; --warn-bg: #352a14;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font: 16px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+  header, main { max-width: 1100px; margin: 0 auto; padding: 0 16px; }
+  header { padding-top: 48px; padding-bottom: 24px; }
+  h1 { margin: 0 0 4px; font-size: 2rem; letter-spacing: -0.02em; }
+  #summary { margin: 0 0 20px; color: var(--muted); }
+  .controls { display: flex; flex-wrap: wrap; gap: 12px 20px; align-items: center; }
+  .controls input[type=search] {
+    flex: 1 1 240px; padding: 10px 12px; font: inherit; color: var(--text);
+    background: var(--card); border: 1px solid var(--border); border-radius: 8px;
+  }
+  .controls label { color: var(--muted); font-size: .95rem; cursor: pointer; user-select: none; }
+  main {
+    display: grid; gap: 16px; padding-bottom: 64px;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  }
+  .card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+    padding: 18px; display: flex; flex-direction: column; gap: 10px;
+  }
+  .top { display: flex; justify-content: space-between; align-items: start; gap: 10px; }
+  .name { font-weight: 600; font-size: 1.05rem; word-break: break-word; }
+  .desc { color: var(--muted); font-size: .93rem; margin: 0; flex: 1; }
+  .meta { color: var(--muted); font-size: .82rem; display: flex; flex-wrap: wrap; gap: 4px 12px; }
+  .links { display: flex; gap: 14px; font-size: .93rem; }
+  .links a { color: var(--accent); text-decoration: none; }
+  .links a:hover { text-decoration: underline; }
+  .badge {
+    flex-shrink: 0; font-size: .75rem; font-weight: 600; padding: 3px 9px;
+    border-radius: 999px; white-space: nowrap;
+  }
+  .badge.checking { color: var(--off); background: var(--off-bg); }
+  .badge.live { color: var(--ok); background: var(--ok-bg); }
+  .badge.off { color: var(--off); background: var(--off-bg); }
+  .badge.broken { color: var(--warn); background: var(--warn-bg); }
+  .tag { font-size: .72rem; border: 1px solid var(--border); border-radius: 4px; padding: 0 5px; }
+  .error { grid-column: 1 / -1; color: var(--warn); }
+</style>
+</head>
+<body>
+<header>
+  <h1>Progetti</h1>
+  <p id="summary">Caricamento repository…</p>
+  <div class="controls">
+    <input id="q" type="search" placeholder="Cerca per nome o descrizione…" aria-label="Cerca">
+    <label><input type="checkbox" id="onlyLive"> Solo quelli online</label>
+    <label><input type="checkbox" id="showForks"> Mostra fork</label>
+  </div>
+</header>
+<main id="grid"></main>
 
+<script>
+// ===== Configurazione =====
+const GITHUB_USER = "bottaridennis";          // ← il tuo username GitHub
+const SITE_URL    = "https://dennisbottari.it";
+// Repo da non mostrare (il repo del sito stesso, ecc.)
+const EXCLUDE = [`${GITHUB_USER}.github.io`, "dennisbottari.it"].map(s => s.toLowerCase());
+// ==========================
+
+const grid = document.getElementById("grid");
+const summary = document.getElementById("summary");
+const q = document.getElementById("q");
+const onlyLive = document.getElementById("onlyLive");
+const showForks = document.getElementById("showForks");
+
+let repos = [];   // { ...datiGitHub, status: "checking" | "live" | "off" | "broken" }
+
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c =>
+  ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+
+async function fetchAllRepos() {
+  const all = [];
+  for (let page = 1; ; page++) {
+    const res = await fetch(
+      `https://api.github.com/users/${GITHUB_USER}/repos?per_page=100&page=${page}&sort=pushed`,
+      { headers: { Accept: "application/vnd.github+json" }, cache: "no-store" }
+    );
+    if (!res.ok) {
+      if (res.status === 404) throw new Error(
+        `L'utente GitHub "${GITHUB_USER}" non esiste: controlla GITHUB_USER in cima allo script.`);
+      throw new Error(res.status === 403 || res.status === 429
+        ? "Limite di richieste all'API GitHub raggiunto, riprova tra qualche minuto."
+        : `Errore dall'API GitHub (${res.status}).`);
+    }
+    const batch = await res.json();
+    all.push(...batch);
+    if (batch.length < 100) break;
+  }
+  return all.filter(r => !EXCLUDE.includes(r.name.toLowerCase()));
+}
+
+// Controlla se dennisbottari.it/<repo>/ risponde.
+// Usa l'URL completo, così funziona sia online sia in locale
+// (GitHub Pages invia l'header CORS Access-Control-Allow-Origin: *).
+// Ritorna true / false, oppure null se la richiesta è stata bloccata (rete o CORS).
+async function isLive(name) {
+  const url = `${SITE_URL}/${encodeURIComponent(name)}/`;
+  try {
+    let res = await fetch(url, { method: "HEAD", cache: "no-store" });
+    if (res.status === 405) res = await fetch(url, { cache: "no-store" });
+    return res.ok;
+  } catch {
+    return null;
+  }
+}
+
+function card(r) {
+  const labels = {
+    checking: "Verifica…",
+    live: "Online",
+    off: "Nessun sito",
+    broken: "Pages attivo, non risponde"
+  };
+  const siteUrl = `${SITE_URL}/${encodeURIComponent(r.name)}/`;
+  const updated = new Date(r.pushed_at).toLocaleDateString("it-IT",
+    { day: "numeric", month: "short", year: "numeric" });
+  return `
+    <article class="card">
+      <div class="top">
+        <span class="name">${esc(r.name)}</span>
+        <span class="badge ${r.status}">${labels[r.status]}</span>
+      </div>
+      <p class="desc">${esc(r.description) || "<em>Nessuna descrizione</em>"}</p>
+      <div class="meta">
+        ${r.language ? `<span>${esc(r.language)}</span>` : ""}
+        <span>Aggiornato ${updated}</span>
+        ${r.fork ? `<span class="tag">fork</span>` : ""}
+        ${r.archived ? `<span class="tag">archiviato</span>` : ""}
+      </div>
+      <div class="links">
+        ${r.status === "live" ? `<a href="${siteUrl}">Apri sito →</a>` : ""}
+        <a href="${esc(r.html_url)}" target="_blank" rel="noopener">Codice su GitHub</a>
+      </div>
+    </article>`;
+}
+
+function render() {
+  const term = q.value.trim().toLowerCase();
+  const list = repos.filter(r =>
+    (showForks.checked || !r.fork) &&
+    (!onlyLive.checked || r.status === "live") &&
+    (!term || r.name.toLowerCase().includes(term) ||
+      (r.description || "").toLowerCase().includes(term))
+  );
+  // Prima quelli online, poi per ultimo aggiornamento
+  const order = { live: 0, broken: 1, checking: 2, off: 3 };
+  list.sort((a, b) => order[a.status] - order[b.status] ||
+    new Date(b.pushed_at) - new Date(a.pushed_at));
+
+  grid.innerHTML = list.length ? list.map(card).join("")
+    : `<p class="error" style="color:var(--muted)">Nessun progetto da mostrare.</p>`;
+
+  const visible = repos.filter(r => showForks.checked || !r.fork);
+  const live = visible.filter(r => r.status === "live").length;
+  const pending = visible.some(r => r.status === "checking");
+  summary.textContent = `${visible.length} repository · ${live} online` +
+    (pending ? " · verifica in corso…" : "");
+}
+
+async function init() {
+  try {
+    repos = (await fetchAllRepos()).map(r => ({ ...r, status: "checking" }));
+  } catch (e) {
+    summary.textContent = "";
+    grid.innerHTML = `<p class="error">${esc(e.message)}</p>`;
+    return;
+  }
+  render();
+  await Promise.all(repos.map(async r => {
+    const ok = await isLive(r.name);
+    if (ok === null) {
+      // Controllo diretto non riuscito: ripiega sul dato dell'API GitHub
+      r.status = r.has_pages ? "live" : "off";
+    } else {
+      r.status = ok ? "live" : (r.has_pages ? "broken" : "off");
+    }
+    render();
+  }));
+}
+
+[q, onlyLive, showForks].forEach(el => el.addEventListener("input", render));
+init();
+</script>
+</body>
+</html>
